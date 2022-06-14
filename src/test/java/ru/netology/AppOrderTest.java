@@ -22,12 +22,13 @@ public class AppOrderTest {
     }
 
     @BeforeEach
-    public void SetUp() {
+    public void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        driver.get("http://localhost:9999");
     }
 
     @AfterEach
@@ -38,17 +39,6 @@ public class AppOrderTest {
 
     @Test
     public void shouldSuccessfullySendForm() {
-        driver.get("http://localhost:9999");
-//        Поиск элементов через список
-//        List<WebElement> textFields = driver.findElements(By.className("input__control"));
-//        textFields.get(0).sendKeys("Геральт Ривийский");
-//        textFields.get(1).sendKeys("+779189355138");
-//        Поиск по атрибутам
-//        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Геральт Ривийский");
-//        driver.findElement(By.cssSelector("[type='tel']")).sendKeys("+79189355138");
-//        driver.findElement(By.cssSelector(".checkbox__box")).click();
-//        driver.findElement(By.cssSelector("button")).click();
-//        Поиск по data-test-id
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Геральт Ривийский");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79189355138");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -60,7 +50,6 @@ public class AppOrderTest {
 
     @Test
     public void shouldSuccessfullySendDifficultName() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Умар ибн аль-Хаттаб");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79189355138");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -72,7 +61,6 @@ public class AppOrderTest {
 
     @Test
     public void shouldCheckIncorrectName() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Frodo Baggins");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79189355138");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -84,7 +72,6 @@ public class AppOrderTest {
 
     @Test
     public void shouldCheckIncorrectName2() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("+79189355138");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79189355138");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -96,7 +83,6 @@ public class AppOrderTest {
 
     @Test
     public void shouldCheckIncorrectPhone() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Гэндальф Серый");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("89189355138");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -108,7 +94,6 @@ public class AppOrderTest {
 
     @Test
     public void shouldCheckIncorrectPhone2() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Гэндальф Серый");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("Гэндальф Серый");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -120,7 +105,6 @@ public class AppOrderTest {
 
     @Test
     public void shouldCheckEmptyNameForm() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79189355138");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -132,7 +116,6 @@ public class AppOrderTest {
 
     @Test
     public void shouldCheckEmptyPhoneForm() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Теодор Декер");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id='agreement']")).click();
@@ -144,7 +127,6 @@ public class AppOrderTest {
 
     @Test
     public void shouldCheckCheckbox() {
-        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Артур Морган");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79189355138");
         driver.findElement(By.cssSelector("button")).click();
